@@ -1,0 +1,74 @@
+//==============================================================================
+//  Module: Footer
+//==============================================================================
+
+.siteFooter {
+  width: 100%;
+  min-width: $content-width + $content-side-gutter * 2;
+  padding: 0 $content-side-gutter;
+  background: $background-1;
+  position: relative;
+
+  @include box-sizing(border-box);
+  @include respondTo(small) {
+    min-width: $content-width-sp;
+    padding: 0;
+  }
+
+  .container {
+    @include centeringBlock($content-width, $content-side-gutter);
+    display: table;
+    padding: 15px 0;
+    > * {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    @include respondTo(small) {
+      width: auto;
+      display: block;
+      > * {
+        display: block;
+      }
+    }
+  }
+
+  .socialButtons {
+    text-align: left;
+    ul {
+      @extend %resetlist;
+      margin: 0;
+      height: 20px;
+      overflow: hidden;
+    }
+    li {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+    .facebook span {
+      vertical-align: top !important;
+    }
+    .twitter {
+      width: 90px;
+    }
+    .google {
+      width: 65px;
+    }
+    @include respondTo(small) {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .copyright {
+    margin: 0;
+    text-align: right;
+
+    @include fontSize(12);
+    @include respondTo(small) {
+      text-align: center;
+    }
+  }
+}

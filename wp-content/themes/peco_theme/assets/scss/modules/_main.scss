@@ -1,0 +1,14 @@
+//==============================================================================
+//  Module: Main
+//==============================================================================
+
+.mainModule{
+  width: $content-width-main;
+  float: left;
+  word-wrap: break-word;
+
+  @include respondTo(small){
+    width: 100%;
+    float: none;
+  }
+}

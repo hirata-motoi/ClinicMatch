@@ -1,0 +1,44 @@
+//==============================================================================
+//  Utility: Sprite
+//==============================================================================
+
+// ----------------------------------------------------------------------------
+
+// Sprite: %sprite-obj
+//
+// 下記のディレクトリ内の画像を compass を介してスプライト画像に変換。
+// ```@extend sprite-obj;``` として使用する。
+// スプライト画像の crop には core ディレクトリ内の mixin を使用する。
+//
+// - 通常画像```sprite/obj/```
+// - Retina用画像```sprite/obj2x/```
+//
+// ```
+// $sprite: 'ttl_' + $name;
+//
+// selector {
+//   @include spriteImageCropRetina($obj-map, $obj-map-retina, $sprite);
+//   @extend %sprite-obj;
+// }
+// ```
+//
+// Styleguide 8.1.1
+
+// Sprite Images
+$obj-map:   sprite-map('sprite/obj/*.png', $position: 0, $spacing: 10px, $repeat: no-repeat);
+$obj-image: sprite-url($obj-map);
+// Sprite Images Retina
+$obj-map-retina:   sprite-map('sprite/obj@2x/*.png', $position: 0, $spacing: 20px, $repeat: no-repeat);
+$obj-image-retina: sprite-url($obj-map-retina);
+
+%sprite-obj{
+  @include hide-text;
+  background-image: $obj-image;
+  background-repeat: no-repeat;
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2){
+    background-image: $obj-image-retina;
+    $size: image-width('sprite/obj@2x.png') / 2;
+    @include background-size($size auto);
+  }
+}

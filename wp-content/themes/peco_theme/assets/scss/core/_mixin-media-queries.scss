@@ -1,0 +1,36 @@
+//==============================================================================
+//  Core: Mixin: Media Queries
+//==============================================================================
+
+// Media Queries
+// --- Usage:
+// --- @include respondTo(small){
+// ---   background: #000;
+// --- }
+@mixin respondTo($media){
+  @if $media == small{
+    @media only screen and (max-width: $break-small){ @content; }
+  }
+  @else if $media == medium{
+    @media only screen and (max-width: $break-medium){ @content; }
+  }
+  @else if $media == large{
+    @media only screen and (max-width: $break-large){ @content; }
+  }
+}
+
+// --- Usage:
+// --- @include respondToDw(small){
+// ---   background: #000;
+// --- }
+@mixin respondToDw($media){
+  @if $media == small{
+    @media only screen and (max-device-width: $break-small){ @content; }
+  }
+  @else if $media == medium{
+    @media only screen and (max-device-width: $break-medium){ @content; }
+  }
+  @else if $media == large{
+    @media only screen and (max-device-width: $break-large){ @content; }
+  }
+}

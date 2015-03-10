@@ -1,0 +1,86 @@
+//==============================================================================
+//  Utility: Mixin
+//==============================================================================
+
+//------------------------------------------------------------------------------
+//
+// 引数px相当のフォントサイズ相対で出力する
+//
+// @param size(require) Number  - 出力したいフォントサイズを指定
+//
+//------------------------------------------------------------------------------
+@mixin fontSize($size){
+  font-size: $size + 'px'\9;
+  font-size: unquote(($size/16) + 'rem');
+}
+
+//------------------------------------------------------------------------------
+//
+// ブロックをセンタリングする
+//
+// @param width(require) String           - ブロックの幅
+// @param $side-padding(optional) String  - ブロックの両側に含めるパディング
+//
+//------------------------------------------------------------------------------
+@mixin centeringBlock($width, $side-padding){
+  margin: 0 auto;
+  width: $width;
+
+  @if $side-padding {
+    padding-right: $side-padding;
+    padding-left: $side-padding;
+  }
+}
+
+
+//------------------------------------------------------------------------------
+//
+// 3点リードで文字をカットする
+//
+// @param linenum(require) Number - 何行表示にするか
+//
+//------------------------------------------------------------------------------
+@mixin lineclamp($linenum) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  -webkit-line-clamp: $linenum; // number of lines to show
+  -webkit-box-orient: vertical;
+}
+
+//------------------------------------------------------------------------------
+//
+// テキストリンクの色とtext-decorationを指定する
+//
+// @param color01(require)      String  - リンク色 ex) $key-blue or #3498db
+// @param color02(optional)     String  - リンク色 :visited
+// @param underline01(optional) String  - text-decoration
+// @param underline02(optional) String  - text-decoration :hover
+// @param opacity(optional)     Boolean - :hover 透過アニメーションの有無
+//
+//------------------------------------------------------------------------------
+@mixin linkColor($color01:$base-link-color, $color02:$base-link-color-visited, $color03:$base-link-color-hover, $underline01:none, $underline02:underline, $opacity:false){
+  a {
+    color: $color01;
+    text-decoration: $underline01;
+
+    &:visited {
+      color: $color02;
+    }
+
+    &:hover {
+
+      @if $color03 {
+        color: $color03;
+      }
+      text-decoration: $underline02;
+
+      @if $opacity {
+        @include transition-property(opacity);
+        @include transition-duration(.3s);
+        opacity: .6;
+      }
+    }
+  }
+}

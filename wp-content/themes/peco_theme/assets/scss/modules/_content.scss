@@ -1,0 +1,14 @@
+//==============================================================================
+//  Module: Content
+//==============================================================================
+
+.siteContents {
+  padding-bottom: 100px;
+  @include centeringBlock($content-width, $content-side-gutter);
+  @include clearfix;
+
+  @include respondTo(small) {
+    width: 100%;
+    @include box-sizing(border-box);
+  }
+}

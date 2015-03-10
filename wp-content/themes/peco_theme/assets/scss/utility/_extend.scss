@@ -1,0 +1,67 @@
+//==============================================================================
+//  Utility: Extends
+//==============================================================================
+
+%resetlist {
+  padding: 0;
+  list-style: none;
+}
+
+%sprite {
+  display: block;
+
+  @include hide-text;
+}
+
+%radius {
+  @include border-radius(3px);
+}
+
+%border {
+  border: $border-1 1px solid;
+}
+
+%border-top {
+  border-top: $border-1 1px solid;
+}
+
+%border-bottom {
+  border-bottom: $border-1 1px solid;
+}
+
+%border-top-dot {
+  border-top: $border-1 1px dotted;
+}
+
+%border-bottom-dot {
+  border-bottom: $border-1 1px dotted;
+}
+
+%border-image {
+  border: $border-1 3px solid;
+}
+
+%excerpt {
+  color: $text-3;
+
+  @include fontSize(12);
+}
+
+%caption {
+  color: $text-3;
+
+  @include fontSize(11);
+}
+
+%icon {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  text-decoration: inherit;
+  text-decoration: none;
+
+  -webkit-font-smoothing: antialiased;
+}

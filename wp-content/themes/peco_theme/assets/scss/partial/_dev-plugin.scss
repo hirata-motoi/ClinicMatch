@@ -1,0 +1,31 @@
+//=============================================================================
+//  Partial: Plugins
+//=============================================================================
+
+.related_post {
+  @extend %resetlist;
+}
+.related_post li {
+  @extend .blk-orderList;
+}
+.related_post .wp_rp_thumbnail {
+  @extend .blk-orderList_articleImage;
+}
+.related_post .wp_rp_title {
+  font-weight: bold;
+  display: block;
+  margin-left: 95px;
+
+  @include fontSize(16);
+}
+.related_post .wp_rp_publish_date {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  margin: 0;
+
+  @extend %caption;
+}
+.wp_rp_footer {
+  display: none;
+}

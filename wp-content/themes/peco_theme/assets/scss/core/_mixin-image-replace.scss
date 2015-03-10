@@ -1,0 +1,53 @@
+//==============================================================================
+//  Core: Mixin: Image Replace
+//==============================================================================
+
+// Sprite Image Crop
+// --- Usage:
+// --- spriteImageCrop($map, $sprite);
+@mixin spriteImageCrop($map, $sprite, $offset-x:0, $offset-y:0){
+  background-position: sprite-position($map, $sprite, $offset-x, $offset-y);
+  width: image-width(sprite-file($map, $sprite));
+  height: image-height(sprite-file($map, $sprite));
+}
+
+// Sprite Image Crop Retina
+// --- Usage:
+// --- spriteImageCropRetina($map, $map-retina, $sprite);
+@mixin spriteImageCropRetina($map, $map-retina, $sprite, $offset-x:0, $offset-y:0){
+  background-position: sprite-position($map, $sprite, $offset-x, $offset-y);
+  width: image-width(sprite-file($map, $sprite));
+  height: image-height(sprite-file($map, $sprite));
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2){
+    $position: sprite-position($map-retina, $sprite);
+    background-position: (ceil(nth($position, 1) / 2)) + $offset-x (ceil(nth($position, 2) / 2)) + $offset-y;
+  }
+}
+
+// AlphaImageLoader
+// --- Usage:
+// --- alphaImageLoader('sprite/obj/', 'imagename');
+@mixin alphaImageLoader($path, $image, $sizing:'scale', $opacity:false){
+  $imageIE: $path + $image + '.png';
+  $imageIEfilter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/shared/imgs/' + $imageIE + '", sizingMethod="' + $sizing + '")';
+
+  @if $opacity
+  {
+    background: none\9;
+    filter: unquote($imageIEfilter)\9;
+  }
+  @else
+  {
+    _background: none;
+    _filter: unquote($imageIEfilter);
+  }
+}
+
+// ChangeImg Png to Gif for IE6
+// --- Usage:
+// --- changeImgGif($image);
+@mixin changeImgGif($image){
+  $imageGIF: '../imgs/sprite/' + $image + '.gif ';
+  _background-image: url($imageGIF);
+}

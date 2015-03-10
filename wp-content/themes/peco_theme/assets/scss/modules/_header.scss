@@ -1,0 +1,30 @@
+//==============================================================================
+//  Module: Header
+//==============================================================================
+
+.siteHeader {
+  width: 100%;
+  min-width: $content-width + $content-side-gutter * 2;
+  height: 80px;
+  padding: 0 $content-side-gutter;
+  border-top: $peco-orange 3px solid;
+
+  @extend %border-bottom;
+  @include box-sizing(border-box);
+  @include respondTo(small) {
+    min-width: $content-width-sp;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  .siteid {
+    display: inline-block;
+    width: 100%;
+
+    $name: 'logo';
+    @include spriteImageCropRetina($obj-map, $obj-map-retina, $name);
+    @extend %sprite-obj;
+  }
+}

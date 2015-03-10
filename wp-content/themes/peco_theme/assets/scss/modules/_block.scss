@@ -1,0 +1,725 @@
+//==============================================================================
+//  Module: Block
+//==============================================================================
+
+$yellow: #ffd700;
+$greenYellow: #ADFF2F;
+$gray: #C0C0C0;
+
+//------------------------------------------------------------------------------
+// Block: .blk-pickup
+
+.blk-pickup {
+  padding: 15px 0;
+  background: $background-1;
+
+  @include clearfix;
+  @extend %border-bottom;
+  @include respondTo(small) {
+    padding: 0;
+  }
+}
+.blk-pickup_inner {
+  @include centeringBlock($content-width, $content-side-gutter);
+  @include respondTo(small) {
+    width: 100%;
+    min-width: $content-width-sp;
+    padding: 0;
+  }
+}
+.blk-pickupList {
+  width: $content-width + $content-side-gutter * 2;
+  margin-left: - $content-side-gutter;
+
+  @include respondTo(small) {
+    width: 100%;
+    margin: 0;
+  }
+}
+.blk-pickupList_item {
+  position: relative;
+  float: left;
+  width: 340px;
+  height: 310px;
+  background: white;
+
+  @include respondTo(small) {
+    float: none;
+    width: 100%;
+    height: 180px;
+    & + .blk-pickupList_item {
+      margin-left: 0;
+    }
+  }
+  & + .blk-pickupList_item {
+    margin-left: 5px;
+  }
+}
+.blk-pickupList_articleImage {
+  overflow: hidden;
+  width: 100%;
+  height: 220px;
+  text-align: center;
+  background-color: $background-2;
+  background-position: center;
+  background-size: cover;
+
+  @include respondTo(small) {
+    height: 180px;
+    img {
+      width: auto;
+      min-height: 180px;
+      max-height: 180px;
+    }
+  }
+  img {
+    width: auto;
+    min-height: 220px;
+    max-height: 220px;
+  }
+}
+.blk-pickupList_articleBody {
+  overflow: hidden;
+  padding: 15px;
+
+  @include respondTo(small) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+    background: rgba($text-1, 0.5);
+
+    @include linkColor(white, white, white, none, none);
+    @include box-sizing(border-box);
+    h1 {
+      @include lineclamp(2);
+    }
+    .time {
+      bottom: 6px;
+      color: white;
+    }
+  }
+  h1 {
+    margin: 0;
+
+    @include fontSize(16);
+  }
+  .time {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    margin: 0;
+
+    @extend %caption;
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-orderList
+
+.blk-orderList {
+  position: relative;
+  display: table;
+  width: 100%;
+  padding: 15px 0;
+
+  @extend %border-top-dot;
+  @include clearfix;
+}
+.blk-orderList_articleImage {
+  float: left;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  background: $background-1;
+  img {
+    width: auto;
+    min-height: 80px;
+    max-height: 80px;
+  }
+}
+.blk-orderList_articleBody {
+  margin-left: 95px;
+  h1 {
+    margin: 0;
+
+    @include fontSize(16);
+  }
+  .excerpt {
+    margin: 0.2rem 0 0;
+
+    @include lineclamp(2);
+    @extend %excerpt;
+  }
+  .time {
+    margin: 5px 0 0;
+    text-align: right;
+
+    @extend %caption;
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-articleExcerpt
+
+.blk-articleExcerpt {
+  margin: 20px 0;
+
+  @include fontSize(13);
+  @extend %excerpt;
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-articleFooter
+
+.blk-articleFooter {
+  padding: 20px 0;
+
+  @include fontSize(12);
+  @extend %border-top;
+  @extend %border-bottom;
+
+  ul {
+    margin: 0;
+    letter-spacing: 1rem;
+
+    @extend %resetlist;
+  }
+  li {
+    display: inline-block;
+    letter-spacing: normal;
+
+    $class: time categories tags;
+    $icon: '\f073' '\f07b' '\f02c';
+    $length: length($class);
+    span {
+      display: none;
+    }
+
+    @for $i from 1 through $length {
+
+      &.#{nth($class, $i)} {
+
+        &::before {
+          @extend %icon;
+          margin: 0 5px 0 0;
+          color: $peco-orange;
+          content: nth($icon, $i);
+        }
+      }
+    }
+
+    &.author {
+      display: block;
+      margin-top: .5em;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-articleBody
+
+.blk-articleBody {
+  padding: 20px 0 40px;
+  color: $text-1;
+
+  @include linkColor($text-1, $text-1, $text-2, underline, none);
+  @include respondTo(small) {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .article_image {
+    max-width: 100%;
+  }
+
+  .tweet {
+    > a {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .icon, .tweet-icon {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0;
+      margin: 0 10px 0 0;
+      vertical-align: top;
+      background-color: #eee;
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      &.default-image {
+        @extend %sprite-obj;
+        @include spriteImageCropRetina($obj-map, $obj-map-retina, 'icon-tweet-gry');
+      }
+    }
+    .tweetInfo {
+      display: inline-block;
+      max-width: 615px;
+      letter-spacing: normal;
+      vertical-align: top;
+      @include respondTo(small) {
+        display: inline;
+      }
+      a:first-child, .user {
+        text-decoration: none;
+        display: inline-block;
+        vertical-align: middle;
+        font-weight: 700;
+        margin: 0;
+        @include fontSize(12);
+        @include respondTo(small) {
+          margin-top: 6px;
+        }
+        span {
+          padding-left: 10px;
+          color: #999;
+          @include fontSize(11);
+          @include respondTo(small) {
+            display: block;
+            padding-left: 0;
+          }
+        }
+      }
+      .comment {
+        margin: 2px 0 4px;
+        @include fontSize(16);
+      }
+      .time {
+        color: #ccc;
+        @include fontSize(10);
+        margin: 0;
+      }
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-pageBody
+
+.blk-pageBody {
+  color: $text-1;
+
+  @include linkColor($text-1, $text-1, $text-2, underline, none);
+  @include respondTo(small) {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    th, td {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  table {
+    border-bottom: $border-1 1px solid;
+    border-left: $border-1 1px solid;
+    background: white;
+    th {
+      font-weight: bold;
+      min-width: 3em;
+      padding: 10px;
+      white-space: nowrap;
+      border-top: $border-1 1px solid;
+      border-right: $border-1 1px solid;
+      background: $background-1;
+    }
+    td {
+      padding: 10px;
+      border-top: $border-1 1px solid;
+      border-right: $border-1 1px solid;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-socialButtons
+
+.blk-socialButtons {
+  ul {
+    display: table;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+
+    @include box-sizing(border-box);
+    @extend %resetlist;
+    li {
+      display: table-cell;
+
+      a {
+        display: inline-block;
+        color: #fff;
+        width: 100%;
+        padding: 10px;
+        text-decoration: none;
+        line-height: 1.25;
+        @include box-sizing(border-box);
+        &::before {
+          @extend %icon;
+          @include fontSize(20);
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
+      &:first-child a {
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      &:last-child a {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+      &.facebook a {
+        &::before {
+          content: '\00f082';
+        }
+        background: #3b5998;
+      }
+      &.twitter a {
+        &::before {
+          content: '\00f099';
+        }
+        background: #55acee;
+      }
+    }
+  }
+  .sp,
+  > .line,
+  > .facebook {
+    display: none;
+  }
+
+  @include respondTo(small) {
+    margin: 20px auto 0;
+    width: 320px;
+    vertical-align: top;
+    ul {
+      display: inline;
+      li {
+        display: inline-block;
+        a {
+          display: table-cell;
+          padding: 0;
+          width: 100px;
+          height: 60px;
+          vertical-align: middle;
+          white-space: nowrap;
+          @include border-radius(3px);
+          @include fontSize(12);
+          &::before {
+            display: block;
+            margin: 0 auto;
+            @include fontSize(30);
+          }
+        }
+      }
+    }
+    .sp,
+    > .line,
+    > .facebook {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .pc {
+      display: none;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-articleFacebookButton
+
+.blk-articleFacebookButton {
+  text-align: center;
+  h3 {
+    color: $text-1;
+    font-weight: normal;
+  }
+  .fb-like {
+    transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+  }
+  .fa {
+    @extend %icon;
+    span {
+      display: none;
+    }
+    &.fa-thumbs-o-up:before {
+      color: #6277a1;
+      content: '\f087';
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-feedlyButton
+
+.blk-feedlyButton {
+  margin: 20px auto 0;
+  @include fontSize(12);
+  img {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  @include respondTo(small) {
+    margin-top: 0;
+    width: 320px;
+  }
+}
+
+
+//------------------------------------------------------------------------------
+// Block: .blk-articleList
+
+.blk-articleList {
+  ul {
+    margin: 0;
+
+    @extend %resetlist;
+  }
+
+  li {
+    @include clearfix;
+    @include fontSize(12);
+
+    & + li {
+      margin-top: 10px;
+    }
+  }
+
+  p {
+    @include fontSize(12);
+  }
+}
+.blk-articleList_image {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+.blk-articleList_body {
+  margin-left: 70px;
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-pageList
+
+.blk-pageList {
+  ul {
+    margin: 0;
+
+    @extend %resetlist;
+  }
+
+  li {
+
+    &::before {
+      @extend %icon;
+      margin: 0 5px 0 0;
+      color: $peco-orange;
+      content: '\f054';
+    }
+
+    @include fontSize(12);
+  }
+
+  p {
+    @include fontSize(12);
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-tagList
+
+.blk-tagList {
+  ul {
+    margin: 0;
+
+    @extend %resetlist;
+  }
+  li {
+    display: inline-block;
+    margin: 0 0 5px 0;
+    background: $background-1;
+
+    @extend %border;
+    @extend %radius;
+    @include fontSize(11);
+    @include linkColor($text-2, $text-2, $text-2, none, none);
+    a {
+      display: inline-block;
+      padding: 5px 10px;
+    }
+  }
+  p {
+    @include fontSize(12);
+  }
+}
+
+//------------------------------------------------------------------------------
+// Block: .blk-pagination
+
+.blk-pagination {
+  margin: 40px 0;
+
+  @include clearfix;
+  @extend %resetlist;
+  li {
+    width: 50%;
+
+    @include fontSize(14);
+    &.prev {
+      float: right;
+      text-align: right;
+      &::after {
+        margin: 0 0 0 5px;
+        content: '\f054';
+        color: $peco-orange;
+
+        @extend %icon;
+      }
+    }
+    &.next {
+      float: left;
+      &::before {
+        margin: 0 5px 0 0;
+        content: '\f053';
+        color: $peco-orange;
+
+        @extend %icon;
+      }
+    }
+  }
+}
+
+
+//------------------------------------------------------------------------------
+// Block: .blk-twitter
+
+.blk-twitter {
+  margin: 40px auto 0;
+  background: white;
+  text-align: center;
+}
+
+
+//------------------------------------------------------------------------------
+// Block: .blk-fbLikeBox
+
+.blk-fbLikeBox {
+  margin: 0 auto;
+  background: white;
+  text-align: center;
+
+  &:first-child {
+    margin-top: 40px;
+  }
+
+  * {
+    width: 100% !important;
+  }
+
+  @at-root {
+    #{&}-wrapper {
+      background: $background-1;
+      padding: 10px;
+      border: solid 1px #ddd;
+      margin-top: 20px;
+      @extend %radius;
+      :first-child {
+        margin-top: 0;
+      }
+    }
+    #{&}-text {
+      @include fontSize(13);
+      color: $text-1;
+    }
+  }
+
+  .mainModule & {
+    @at-root {
+      #{&}-normal {
+        display: block;
+      }
+      #{&}-small {
+        display: none;
+      }
+    }
+
+    @include respondTo(small) {
+      @at-root {
+        #{&}-normal {
+          display: none;
+        }
+        #{&}-small {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+//------------------------------------------------------------------------------
+// Block: .blk-section
+.blk-section {
+  border:solid 1px lightgray;
+  @include border-radius(10px 10px 0px 0px);
+  margin-bottom: 20px;
+}
+//------------------------------------------------------------------------------
+// Block: .blk-sectionHeader
+.blk-sectionHeader {
+  @include background-image(linear-gradient(top, lighten($yellow,30), $yellow));
+  @include border-radius(10px 10px 0px 0px);
+  text-align: left;
+}
+
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+// Section
+.box-section {
+  @include border-radius(10px);
+  display: inline-block;
+  padding: 5px;
+}
+
+.box-gray {
+  @include background-image(linear-gradient(top, lighten($gray,30), $gray));
+  @include filter-gradient(lighten($gray,30), $gray, vertical); //IE用の記述
+}
+
+.search-submit-button {
+  @include border-radius(13px);
+  @include background-image(linear-gradient(top, lighten($greenYellow,30), $greenYellow));
+  @include filter-gradient(lighten($greenYellow,30), $greenYellow, vertical); //IE用の記述
+}
+
+.search-tab {
+  li {
+    a {
+      background-color: lightgray;    
+    }    
+  }    
+}
+

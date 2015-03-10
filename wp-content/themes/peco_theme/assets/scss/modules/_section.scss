@@ -1,0 +1,17 @@
+//==============================================================================
+//  Module: Section
+//==============================================================================
+
+$red: #f00;
+.box-section {
+  @include border-radius(10px);
+  display: inline-block;
+}
+
+.box-gray {
+  @include background-image(linear-gradient(top, lighten($red,30), $red));
+  @include filter-gradient(lighten($red,30), $red, vertical); //IE用の記述
+}
+
+
+

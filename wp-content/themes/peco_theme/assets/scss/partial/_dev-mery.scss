@@ -1,0 +1,57 @@
+//=============================================================================
+//  Partial: MERY
+//=============================================================================
+
+.article_content {
+  margin: 30px 0;
+
+  @include respondTo(small) {
+    iframe {
+      max-width: 100% !important;
+    }
+  }
+}
+.article_headline {
+  margin: 30px 0;
+  padding: 10px 0;
+  border-bottom: $border-1 3px solid !important;
+
+  @include fontSize(28);
+}
+.article_image_area {
+  // margin: 30px 0;
+  @include clearfix;
+}
+.article_image {
+  display: inline-block;
+  margin-right: 15px;
+  vertical-align: middle;
+  letter-spacing: normal;
+
+  @include respondTo(small) {
+    float: none !important;
+    margin-right: 0;
+    .x-article-image {
+      max-width: 100% !important;
+    }
+  }
+}
+.article_image_text {
+  overflow: hidden;
+  letter-spacing: normal;
+}
+.rel {
+  margin: 5px 0 0;
+  @extend %caption;
+  @include linkColor($text-3, $text-3, $text-3, none, underline);
+}
+.article_quote {
+  margin: 0;
+  padding: 30px;
+  background: $background-1;
+
+  @extend %radius;
+  & > * {
+    margin: 0;
+  }
+}

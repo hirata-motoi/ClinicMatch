@@ -1,0 +1,33 @@
+//==============================================================================
+//  Variables
+//==============================================================================
+
+// Base Colors
+$peco-orange:  #e94b24;
+$text-1:       #333333;
+$text-2:       #666666;
+$text-3:       #888888;
+$border-1:     #dddddd;
+$background-1: #f6f6f6;
+$background-2: #333333;
+
+// Content Base Setting
+$base-font: Helvetica, Arial, 'YuGothic', 'Kozuka Gothic std', sans-serif;
+$base-color:              $text-2;
+$base-background:         white;
+$base-link-color:         $text-1;
+$base-link-color-hover:   $text-2;
+$base-link-color-visited: $text-1;
+
+$content-width:       1050px;
+$content-width-main:  680px;
+$content-width-sub:   300px;
+$content-side-gutter: 15px;
+$content-width-sp:    320px;
+
+// Media Queries
+// @mixin respondTo
+// @mixin respondToDw
+$break-medium: 789px;
+$break-small:  480px;
+$break-large:  980px;
